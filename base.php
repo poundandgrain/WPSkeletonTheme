@@ -6,6 +6,7 @@
     get_template_part('templates/header');
     ?>
 
+    <h1>CHANGE ME</h1>
     <?php include pandg_template_path(); ?>
 
 
