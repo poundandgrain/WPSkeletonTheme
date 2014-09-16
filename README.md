@@ -1,9 +1,11 @@
 # Installation
 
-`cd themes`
-`git clone https://github.com/JamesPlayer/PandgSkeletonTheme.git name-of-your-theme`
-`cd name-of-your-theme`
-`npm install`
+```
+cd themes
+git clone https://github.com/JamesPlayer/PandgSkeletonTheme.git name-of-your-theme
+cd name-of-your-theme`
+npm install
+```
 
 In order to create new [SVG icons](https://github.com/filamentgroup/grunticon), and to compile all Sass and JS run `grunt`.
 
