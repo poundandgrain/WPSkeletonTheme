@@ -1,0 +1,459 @@
+// http://web-design-weekly.com/2013/05/12/handy-sass-mixins/
+
+@mixin breakpoint($point) {
+
+    @if $point == xlarge {
+        @media (min-width: 1680px) { @content; }
+    }
+    @else if $point == large-up {
+        @media (min-width: 64.375em) { @content; }
+    }
+    @else if $point == large-down {
+        @media (max-width: 1680px) { @content; }
+    }
+    @else if $point == medium-up {
+        @media (min-width: 43.75em) { @content; }
+    }
+    @else if $point == medium-down {
+        @media (max-width: 64.375em) { @content; }
+    }
+    @else if $point == medium {
+        @media (max-width: 64.375em) and (min-width: 43.75em) { @content; }
+    }
+    @else if $point == small {
+        @media (max-width: 43.75em)  { @content; }
+    }
+    @else if $point == small-down {
+        @media (max-width: 43.75em)  { @content; }
+    }
+    @else if $point == xsmall {
+        @media (max-width: 30em)  { @content; }
+    }
+    @else if $point == smalllandscape {
+        @media (max-width: 43.75em) and (orientation: landscape)  { @content; }
+    }
+}
+
+@mixin image-2x($image, $width, $height) {
+    @media (min--moz-device-pixel-ratio: 1.3),
+    (-o-min-device-pixel-ratio: 2.6/2),
+    (-webkit-min-device-pixel-ratio: 1.3),
+    (min-device-pixel-ratio: 1.3),
+    (min-resolution: 1.3dppx) {
+        /* on retina, use image that's scaled by 2 */
+        background-image: url($image);
+        background-size: $width $height;
+    }
+}
+
+.clearfix {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.inline-block {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+.valign-center {
+    & > * {
+        vertical-align: middle;
+        margin: 0;
+        @extend .inline-block;
+    }
+
+
+    &:before {
+        content: '';
+        @extend .inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -0.25em; /* Adjusts for spacing */
+    }
+}
+
+.valign-bottom {
+    & > * {
+        vertical-align: bottom;
+        margin: 0;
+        @extend .inline-block;
+    }
+
+
+    &:before {
+        content: '';
+        @extend .inline-block;
+        height: 100%;
+        vertical-align: bottom;
+        margin-right: -0.25em; /* Adjusts for spacing */
+    }
+}
+
+@mixin box-sizing($box-model) {
+    -webkit-box-sizing: $box-model; // Safari <= 5
+    -moz-box-sizing: $box-model; // Firefox <= 19
+    box-sizing: $box-model;
+}
+
+@mixin box-shadow($values) {
+    -moz-box-shadow: $values;
+    -webkit-box-shadow: $values;
+    box-shadow: $values;
+}
+
+@mixin filter-shadow($values) {
+    -webkit-filter: drop-shadow($values);
+    -moz-filter: drop-shadow($values);
+    -ms-filter: drop-shadow($values);
+    -o-filter: drop-shadow($values);
+    filter: drop-shadow($values);
+}
+
+
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    border-radius: $radius;
+    background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+// Single side border-radius
+
+@mixin border-top-radius($radius) {
+    -webkit-border-top-right-radius: $radius;
+    border-top-right-radius: $radius;
+    -webkit-border-top-left-radius: $radius;
+    border-top-left-radius: $radius;
+    background-clip: padding-box;
+}
+@mixin border-right-radius($radius) {
+    -webkit-border-bottom-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+    -webkit-border-top-right-radius: $radius;
+    border-top-right-radius: $radius;
+    background-clip: padding-box;
+}
+@mixin border-bottom-radius($radius) {
+    -webkit-border-bottom-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+    -webkit-border-bottom-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+    background-clip: padding-box;
+}
+@mixin border-left-radius($radius) {
+    -webkit-border-bottom-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+    -webkit-border-top-left-radius: $radius;
+    border-top-left-radius: $radius;
+    background-clip: padding-box;
+}
+
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+%center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+%text-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@function em($px, $base: 16) {
+    @return ($px / $base) * 1em;
+}
+
+@mixin font-size($sizeValue: 12 ){
+    font-size: $sizeValue + px; //fallback for old browsers
+    font-size: ($sizeValue/16) + rem;
+}
+
+@mixin line-height($heightValue: 12 ){
+    line-height: $heightValue + px; //fallback for old browsers
+    line-height: ($heightValue/16) + rem;
+}
+
+%font-smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    .isWindowsChrome & {
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+}
+
+%fix-webkit-font-rendering {
+    @extend %font-smoothing;
+    text-rendering: optimizeLegibility;
+}
+
+@mixin transition($rule) {
+    -webkit-transition: $rule;
+    -moz-transition: $rule;
+    transition: $rule;
+}
+
+// OnMediaQuery
+html {
+    // Prevent font scaling in landscape while allowing user zoom
+    -webkit-text-size-adjust: 100%;
+
+    // font-family used for onMediaQuery: https://github.com/JoshBarr/on-media-query
+    font-family: 'large';
+
+    @include breakpoint(small) {
+        font-family: 'small';
+    }
+
+    @include breakpoint(medium) {
+        font-family: 'medium';
+    }
+
+    @include breakpoint(large-up) {
+        font-family: 'large-up';
+    }
+}
+
+// Helpers
+.mt-xxl {margin-top: 4em !important;}
+.mt-xl {margin-top: 2em !important;}
+.mt-l {margin-top: 1.5em !important;}
+.mt {margin-top: 1em !important;}
+.mt-s {margin-top: 0.5em !important;}
+.mt-xs {margin-top: 0.25em !important;}
+.mt-0 {margin-top: 0 !important;}
+
+.mb-xxl {margin-bottom: 4em !important;}
+.mb-xl {margin-bottom: 2em !important;}
+.mb-l {margin-bottom: 1.5em !important;}
+.mb {margin-bottom: 1em !important;}
+.mb-s {margin-bottom: 0.5em !important;}
+.mb-xs {margin-bottom: 0.25em !important;}
+.mb-0 {margin-bottom: 0 !important;}
+
+.pt-xxl {padding-top: 4em !important;}
+.pt-xl {padding-top: 2em !important;}
+.pt-l {padding-top: 1.5em !important;}
+.pt {padding-top: 1em !important;}
+.pt-s {padding-top: 0.5em !important;}
+.pt-xs {padding-top: 0.25em !important;}
+.pt-0 {padding-top: 0 !important;}
+
+.pb-xxl {padding-bottom: 4em !important;}
+.pb-xl {padding-bottom: 2em !important;}
+.pb-l {padding-bottom: 1.5em !important;}
+.pb {padding-bottom: 1em !important;}
+.pb-s {padding-bottom: 0.5em !important;}
+.pb-xs {padding-bottom: 0.25em !important;}
+.pb-0 {padding-bottom: 0 !important;}
+
+@include breakpoint(small) {
+    .pb-s--xxl { padding-bottom: 2.5em !important;}
+}
+
+.pull-right {float: right !important;}
+.pull-left {float: left !important;}
+
+.antialiased { @extend %font-smoothing;}
+.relative { position: relative !important; }
+.block { display: block;}
+.center { text-align: center !important;}
+.uppercase { text-transform: uppercase !important;}
+.overflow-hidden { overflow: hidden !important;}
+.full-width { width: 100% !important;}
+.nowrap { white-space: nowrap !important;}
+
+.justify {
+    text-justify: distribute-all-lines; //IE
+    text-align: justify;
+    -moz-text-align-last: center;
+    text-align-last: center;
+    line-height: 0;
+    *zoom: 1;
+
+    & > * {
+        line-height: 1;
+    }
+
+    &:after {
+        content: "";
+        width: 100%;
+        @extend .inline-block;
+    }
+}
+
+*,
+*:after,
+*:before {
+    @include box-sizing(border-box);
+}
+
+.ratio-bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.ratio-img {
+    width: 100%;
+    display: block;
+}
+
+%ratio-box {
+
+    position: relative;
+
+    &:before {
+        content: "";
+        display: block;
+        height: 0;
+        padding-top: 100%;
+    }
+
+    &.no-ratio-medium {
+        @include breakpoint(medium-down) {
+            &:before {
+                padding-top: 0;
+            }
+            .ratio-content {
+                position: static;
+            }
+        }
+    }
+
+    &.no-ratio-small {
+        @include breakpoint(small-down) {
+            &:before {
+                padding-top: 0;
+            }
+            .ratio-content {
+                position: static;
+            }
+        }
+    }
+
+    &.no-ratio-xsmall {
+        @include breakpoint(xsmall) {
+            &:before {
+                padding-top: 0;
+            }
+            .ratio-content {
+                position: static;
+            }
+        }
+    }
+}
+
+.ratio-1-1 {
+    @extend %ratio-box;
+}
+
+.ratio-1-2 {
+    @extend %ratio-box;
+    &:before {
+        padding-top: 50%;
+    }
+}
+
+.ratio-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+// Grid
+.row {
+    font-size: 0;
+    & > * {
+        @include font-size(16);
+    }
+
+    &.gutters {
+        margin: 0 -10px;
+    }
+}
+
+%col {
+    @extend .inline-block;
+    vertical-align: top;
+
+    .gutters & {
+        padding: 0 10px;
+    }
+}
+
+.col-33 {
+    @extend %col;
+    width: 33.333%;
+}
+
+.col-50 {
+    @extend %col;
+    width: 50%;
+    @include breakpoint(small) {
+        width: 100%;
+    }
+}
+
+.col-20 {
+    @extend %col;
+    width: 20%;
+
+    @include breakpoint(small) {
+        width: 33.333%;
+    }
+
+    @include breakpoint(xsmall) {
+        width: 50%;
+    }
+}
+
+.col-50-small {
+    @include breakpoint(small) {
+        width: 50%;
+    }
+}
+
+.col-100-xsmall {
+    @include breakpoint(xsmall) {
+        width: 100%;
+    }
+}
+
+.col-100-medium {
+    @include breakpoint(medium) {
+        width: 100%;
+    }
+}
+
+// Icons
+%icon {
+    @extend .inline-block;
+    background-position: 50% 50%;
+    font-size: 0;
+    text-indent: -999em;
+    overflow: hidden;
+
+    a & {
+        &:hover {
+            @include opacity(0.5);
+        }
+    }
+
+}
