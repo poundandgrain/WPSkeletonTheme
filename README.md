@@ -1,4 +1,6 @@
-# Installation
+# Pound and Grain's Skeleton Wordpress theme
+
+## Installation
 
 ```
 cd themes
