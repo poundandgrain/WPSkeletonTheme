@@ -5,7 +5,7 @@
 ```
 cd themes
 git clone https://github.com/JamesPlayer/PandgSkeletonTheme.git name-of-your-theme
-cd name-of-your-theme`
+cd name-of-your-theme
 npm install
 ```
 
