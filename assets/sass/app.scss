@@ -1,4 +1,15 @@
 @import "_reset";
 @import "_helpers";
 
+// There's lots of mixins, helper classes and things you can extend in helpers.sass
+// You should check it out
+
 // Styles go here
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    margin: 1em;
+    font-size: 2em;
+}
