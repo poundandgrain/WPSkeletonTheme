@@ -1,17 +1,29 @@
-# Pound and Grain's Skeleton Wordpress theme
+# Skeleton Wordpress theme
+
+A wordpress theme for developers building a completely custom website. Comes with grunt tasks including:
+- grunt-contrib-watch
+- grunt-contrib-sass
+- grunt-contrib-concat
+- grunt-contrib-cssmin
+- grunt-contrib-uglify
+- grunt-pngmin
+- grunt-grunticon
+- grunt-svgmin
 
 ## Installation
 
 ```
 cd themes
-git clone https://github.com/JamesPlayer/PandgSkeletonTheme.git name-of-your-theme
+git clone https://github.com/JamesPlayer/WPSkeletonTheme.git name-of-your-theme
 cd name-of-your-theme
 npm install
 ```
 
-In order to create new [SVG icons](https://github.com/filamentgroup/grunticon), and to compile all Sass and JS run `grunt`.
+In order to create new [SVG icons](https://github.com/filamentgroup/grunticon), and to compile all Sass, JS, as well as every other task except for minification, run `grunt`.
 
 Run `grunt watch` to compile JS and Sass as it changes.
+
+Run `grunt deploy` to minify JS and CSS.
 
 ## JS includes:
 - jQuery
