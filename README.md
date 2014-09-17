@@ -12,6 +12,8 @@ A wordpress theme for developers building a completely custom website. Comes wit
 
 ## Installation
 
+[Install npm](http://blog.nodeknockout.com/post/65463770933/how-to-install-node-js-and-npm) if you don't already have it.
+
 ```
 cd themes
 git clone https://github.com/JamesPlayer/WPSkeletonTheme.git name-of-your-theme
