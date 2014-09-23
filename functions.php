@@ -1,7 +1,9 @@
 <?php
+require_once locate_template('/lib/init.php');
 require_once locate_template('/lib/custom.php');
 require_once locate_template('/lib/wrapper.php');
 require_once locate_template('/inc/news.php');
+require_once locate_template('/lib/nav.php');
 
 // CSS and JS
 function pandg_scripts() {
