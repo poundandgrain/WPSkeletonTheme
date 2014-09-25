@@ -12,6 +12,10 @@ function print_rr($thing) {
 
 function getImgUrl($field, $size) {
 
+    if (is_string($field)) {
+        $field = get_field($field);
+    }
+
     $id = $field;
     if (is_array($field) && isset($field["id"])) {
         $id = $field["id"];
