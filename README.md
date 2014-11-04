@@ -16,8 +16,9 @@ A wordpress theme for developers building a completely custom website. Comes wit
 
 ```
 cd themes
-git clone https://github.com/JamesPlayer/WPSkeletonTheme.git name-of-your-theme
+git clone https://github.com/poundandgrain/WPSkeletonTheme.git name-of-your-theme
 cd name-of-your-theme
+rm -rf .git
 npm install
 ```
 
