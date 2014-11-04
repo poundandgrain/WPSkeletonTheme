@@ -20,6 +20,7 @@ git clone https://github.com/poundandgrain/WPSkeletonTheme.git name-of-your-them
 cd name-of-your-theme
 rm -rf .git
 npm install
+(edit name-of-your-theme/style.css and change Theme Name to your theme)
 ```
 
 In order to create new [SVG icons](https://github.com/filamentgroup/grunticon), and to compile all Sass, JS, as well as every other task except for minification, run `grunt`.
